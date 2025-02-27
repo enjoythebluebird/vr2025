@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +10,14 @@ public class FlyTest : MonoBehaviour
     public InputActionReference gripAction;
     public Rigidbody XROrigin;
     public float maxSpeed = 5.0f;
+    
+    private float originalMaxSpeed;
 
     void Start()
     {
         var inputActionAsset = GetComponent<PlayerInput>().actions;
         XROrigin.useGravity = false;
+        originalMaxSpeed = maxSpeed;
     }
 
     void Update()
@@ -48,5 +52,12 @@ public class FlyTest : MonoBehaviour
         //    // If not currently flying slow the player down
         //    XROrigin.linearVelocity *= 0.99f;
         //}
+    }
+
+    public IEnumerator ResetMaxSpeed()
+    {
+        yield return new WaitForSeconds(5.0f);
+        maxSpeed /= 2.0f;
+        flyingSpeed /= 3.0f;
     }
 }
