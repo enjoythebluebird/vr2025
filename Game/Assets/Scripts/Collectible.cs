@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class Collectible : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class Collectible : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            OnCollected?.Invoke();
+            FlyTest flyTest = other.gameObject.GetComponent<FlyTest>();
+            flyTest.maxSpeed *= 2.0f;
+            flyTest.flyingSpeed *= 3.0f;
+            flyTest.StartCoroutine(flyTest.ResetMaxSpeed());
             Destroy(gameObject);
         }
     }

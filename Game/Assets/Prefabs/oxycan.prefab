@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: oxycan
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 02d36151985adfb4cbd065892bab2d25, type: 3}
+      propertyPath: m_TagString
+      value: PowerUp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

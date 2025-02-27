@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 2170080995420326104}
   m_Layer: 6
   m_Name: XR Physics
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
