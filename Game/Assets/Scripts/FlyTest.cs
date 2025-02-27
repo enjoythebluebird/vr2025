@@ -7,12 +7,11 @@ public class FlyTest : MonoBehaviour
     public GameObject leftHand;
     public float flyingSpeed = 0.0f;
     public InputActionReference gripAction;
-
-    private Rigidbody XROrigin;
+    public Rigidbody XROrigin;
+    public float maxSpeed = 5.0f;
 
     void Start()
     {
-        XROrigin = GetComponent<Rigidbody>();
         var inputActionAsset = GetComponent<PlayerInput>().actions;
         XROrigin.useGravity = false;
     }
@@ -20,7 +19,6 @@ public class FlyTest : MonoBehaviour
     void Update()
     {
         Flying();
-        ZeroGravity();
     }
 
     private bool CheckIfFlying()
@@ -30,19 +28,25 @@ public class FlyTest : MonoBehaviour
 
     private void Flying()
     {
+        // Check if the player is pressing trigger
         if (CheckIfFlying())
         {
+            // If currently flying apply speed to make player move faster
             Vector3 flyDir = leftHand.transform.position - head.transform.position;
-            transform.position += flyDir * flyingSpeed;
-        }
-    }
+            Vector3 newVelocity = XROrigin.linearVelocity + flyDir.normalized * flyingSpeed * Time.deltaTime;
 
-    private void ZeroGravity()
-    {
-        // Assuming you want to check for collision with the floor
-        if (Physics.Raycast(transform.position, -Vector3.up, 0.1f))
-        {
-            
+            // Cap the speed but allow direction change
+            if (newVelocity.magnitude > maxSpeed)
+            {
+                newVelocity = newVelocity.normalized * maxSpeed;
+            }
+
+            XROrigin.linearVelocity = newVelocity;
         }
+        //else
+        //{
+        //    // If not currently flying slow the player down
+        //    XROrigin.linearVelocity *= 0.99f;
+        //}
     }
 }
