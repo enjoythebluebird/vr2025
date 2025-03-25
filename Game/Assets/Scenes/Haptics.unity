@@ -244,7 +244,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1335010636}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -389,7 +389,6 @@ GameObject:
   - component: {fileID: 304965520}
   - component: {fileID: 304965523}
   - component: {fileID: 304965522}
-  - component: {fileID: 304965521}
   m_Layer: 0
   m_Name: Direct Interactor
   m_TagString: Untagged
@@ -412,51 +411,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 630087798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &304965521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304965519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd0b9921bce4eeb49bd05815b1135ac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractorSourceObject: {fileID: 304965522}
-  m_HapticImpulsePlayer: {fileID: 630087797}
-  m_PlaySelectEntered: 0
-  m_SelectEnteredData:
-    m_Amplitude: 0.5
-    m_Duration: 0.1
-    m_Frequency: 0
-  m_PlaySelectExited: 0
-  m_SelectExitedData:
-    m_Amplitude: 0.5
-    m_Duration: 0.1
-    m_Frequency: 0
-  m_PlaySelectCanceled: 0
-  m_SelectCanceledData:
-    m_Amplitude: 0.5
-    m_Duration: 0.1
-    m_Frequency: 0
-  m_PlayHoverEntered: 0
-  m_HoverEnteredData:
-    m_Amplitude: 0.25
-    m_Duration: 0.1
-    m_Frequency: 0
-  m_PlayHoverExited: 0
-  m_HoverExitedData:
-    m_Amplitude: 0.25
-    m_Duration: 0.1
-    m_Frequency: 0
-  m_PlayHoverCanceled: 0
-  m_HoverCanceledData:
-    m_Amplitude: 0.25
-    m_Duration: 0.1
-    m_Frequency: 0
-  m_AllowHoverHapticsWhileSelecting: 0
 --- !u!114 &304965522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,6 +898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (Hand Physics)
       objectReference: {fileID: 0}
+    - target: {fileID: 5367935525451356689, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1335010636}
     - target: {fileID: 6466108264059108584, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.42
@@ -993,24 +951,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5634079723055906791, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1032480533}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4727915521892617915, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 630087799}
   m_SourcePrefab: {fileID: 100100000, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
---- !u!114 &630087797 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4307660676155406324, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
+--- !u!1 &630087797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4727915521892617915, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
   m_PrefabInstance: {fileID: 630087796}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &630087798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5634079723055906791, guid: 7287637331b4a5442abc89d726cc0752, type: 3}
   m_PrefabInstance: {fileID: 630087796}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &630087799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630087797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012a1cc1377f6584b848c256d73a5f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &697342711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,7 +2120,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1335010636}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -2486,7 +2453,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1335010636}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -2780,7 +2747,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1335010636}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
