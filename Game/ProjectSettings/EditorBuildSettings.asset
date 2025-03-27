@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Level Select.unity
+    guid: c37f4aa00de4e624e85f300bed66be02
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 2665fe6aa20a3ff44a37fb7defa23f41
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 821c93128d0f13c45a5ce7459206480f
+  - enabled: 1
+    path: Assets/Scenes/Level 3 Set Dressed.unity
+    guid: 3cbc48877175bf340a5a38d98f46446f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 53add4ac06a912347b8acfb6b5965e5e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
