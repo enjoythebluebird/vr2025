@@ -1,8 +1,4 @@
 using System.Collections;
-using System.Collections.Specialized;
-using System.ComponentModel.Design.Serialization;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Wire : MonoBehaviour
@@ -15,25 +11,27 @@ public class Wire : MonoBehaviour
 
     [SerializeField] float totalWeight = 10;
     [SerializeField] float drag = 1;
-    [SerializeField] float angurlarDrag = 1;
+    [SerializeField] float angularDrag = 1;
 
     [SerializeField] bool usePhysics = false;
 
+    [SerializeField] int segmentcount = 10;
     Transform[] segments = new Transform[0];
+
     [SerializeField] Transform segmentParent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        segment = new Transform[segmentCount];
+        segments = new Transform[segment];
         GenerateSegments();
     }
 
     void OnDrawGizmos()
     {
-        for(int i = 0; i < segments.Length; i++)
+        for (int i = 0; i < segments.Length; i++)
         {
-            OnDrawGizmos().DrawWireSphere(segments[i].position, 0.1f);
+            Gizmos.DrawWireSphere(segments[i].position, 0.1f);
         }
     }
 
@@ -42,9 +40,9 @@ public class Wire : MonoBehaviour
         JoinSegment(startTransform, null, true);
         Transform prevTransform = startTransform;
 
-       Vector3 direction = (endTransform.position - startTransform.position);
-        
-        for (int i = 0; i < segmentCount; i++)
+        Vector3 direction = (endTransform.position - startTransform.position);
+
+        for (int i = 0; i < segment; i++)
         {
             GameObject segment = new GameObject($"segment_{i}");
             segment.transform.SetParent(segmentParent);
@@ -63,11 +61,15 @@ public class Wire : MonoBehaviour
 
     private void JoinSegment(Transform current, Transform connectedTransform, bool isKinetic = false, bool isCloseConnected = false)
     {
-        Rigidbody rigidbody = current.AddComponent<Rigidbody>();
-        rigidbody.isKinematic = isKinetic;
-        rigidbody.mass = totalWeight / segmentCount;
-        rigidbody.drag = drag;
-        rigidbody.angularDrag = angularDrag;
+        if(current.GetComponent<Rigidbody>() == null)
+        {
+            Rigidbody rigidbody = current.gameObject.AddComponent<Rigidbody>();
+            rigidbody.isKinematic = isKinetic;
+            rigidbody.mass = totalWeight / segment;
+            rigidbody.linearDamping = drag;
+            rigidbody.angularDamping = angularDrag;
+        }
+       
 
         if (usePhysics)
         {
@@ -77,14 +79,18 @@ public class Wire : MonoBehaviour
 
         if (connectedTransform != null)
         {
-            ConfigurableJoint joint = current.AddComponent<ConfigurableJoint>();
+            ConfigurableJoint joint = current.GetComponent<ConfigurableJoint>();
+            if(joint == null)
+            {
+                joint = current.AddComponent<ConfigurableJoint>();
+            }
 
             joint.connectedBody = connectedTransform.GetComponent<Rigidbody>();
 
             joint.autoConfigureConnectedAnchor = false;
             if (isCloseConnected)
             {
-                joint.connectedAnchor = BitVector32.forward * 0.1f;
+                joint.connectedAnchor = Vector3.forward * 0.1f;
             }
             else
             {
@@ -101,19 +107,40 @@ public class Wire : MonoBehaviour
 
             SoftJointLimit softJointLimit = new SoftJointLimit();
             softJointLimit.limit = 0;
-            joint.angularyZlimit = softJointLimit;
+            joint.angularZLimit = softJointLimit;
 
             JointDrive jointDrive = new JointDrive();
             jointDrive.positionDamper = 0;
             jointDrive.positionSpring = 0;
             joint.angularXDrive = jointDrive;
-            joint.angularYDrive = jointDrive;
+            joint.angularYZDrive = jointDrive;
         }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(prevSegmentCount != segmentCount)
+        {
+            segments = new Transform[segment];
+            RemoveSegments();
+            GenerateSegments();
+        }
+        prevSegmentCount = segmentCount;
+
+        prevTotalLength = totalLength;
+        prevDrag = drag;
+
+    }
+
+    private void RemoveSegments()
+    {
+        for(int i = 0;i <segments.Length; i++)
+        {
+            if(segments[i] != null)
+            {
+                Destroy(segments[i].gameObject);
+            }
+        }
     }
 }
