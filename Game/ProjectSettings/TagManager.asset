@@ -10,6 +10,10 @@ TagManager:
   - wire3
   - wire4
   - wire5
+  - Earth
+  - Flag
+  - Astronaut
+  - Hand
   layers:
   - Default
   - TransparentFX

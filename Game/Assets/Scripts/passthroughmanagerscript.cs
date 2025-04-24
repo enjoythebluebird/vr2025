@@ -18,35 +18,37 @@ public class passthroughmanagerscript : MonoBehaviour
     {
         if (!op)
         {
-            layer1 textureOpacity = 1;
+            layer1.textureOpacity = 1;
             op = true;
         }
         else
         {
-            layer1 textureOpacity = 0.2f;
+            layer1.textureOpacity = 0.2f;
             op = false;
         }
     }
 
     public void switchlayers()
     {
-        if (clicked) { 
+        if (clicked)
+        {
             clicked = true;
-            layer1 enabled = false;
-            layer2 enabled = true;
+            layer1.enabled = false;
+            layer2.enabled = true;
         }
         else
         {
             clicked = false;
-            layer1 enabled = true;
-            layer2 enabled = false;
+            layer1.enabled = true;
+            layer2.enabled = false;
 
         }
 
 
         // Update is called once per frame
         void Update()
-            {
+        {
 
-            }
+        }
+    }
 }
