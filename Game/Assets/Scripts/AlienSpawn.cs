@@ -1,37 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using UnityEngine;
 
-public class AlienSpawn : MonoBehaviour
+public class alienSpawn : MonoBehaviour
 {
-    public GameObject theEnemy;
-    public int xPos;
-    public int zPos;
-    public int EnemyCount;
+  // Alien model and number that is spawned.
+  [SerializeField] private GameObject alien;
+  [SerializeField] private int numberOfAliens = 20;
+  // Range of alien model positions, based off of locations in the living room. (Spawn points of windows unknown at this time.)
+  [SerializeField] private Vector3 minSpawnPosition = new Vector3(1.3f, -.6f, -3.5f);
+  [SerializeField] private Vector3 maxSpawnPosition = new Vector3(.03f, -.6f, .3f);
+  // Range of spawn times.
+  [SerializeField] private float minSpawnInterval = 1f;
+  [SerializeField] private float maxSpawnInterval = 5f;
 
+  private void Start()
+  {
+      StartCoroutine(SpawnAliens());
+  }
+  // Alien spawner, loops through different positions at spawn random spawn time.
+  private IEnumerator SpawnAliens()
+  {
+      for (int i = 0; i < numberOfAliens; i++)
+      {
+          float delay = Random.Range(minSpawnInterval, maxSpawnInterval);
+          yield return new WaitForSeconds(delay);
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
-        StartCoroutine(SpawnEnemies());
-    }
+          Vector3 position = new Vector3(
+              Random.Range(minSpawnPosition.x, maxSpawnPosition.x),
+              Random.Range(minSpawnPosition.y, maxSpawnPosition.y),
+              Random.Range(minSpawnPosition.z, maxSpawnPosition.z)
+          );
 
-    private IEnumerator SpawnEnemies()
-    {
-        while (EnemyCount < 20)
-        {
-            xPos = Random.Range(-16, 13);
-            zPos = Random.Range(-20, 1);
-            Instantiate(theEnemy, new Vector3(xPos, -4, zPos), Quaternion.identity);
-            yield return new WaitForSeconds(5);
-            EnemyCount += 1;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+          Instantiate(alien, position, Quaternion.identity);
+      }
+  }
 }
