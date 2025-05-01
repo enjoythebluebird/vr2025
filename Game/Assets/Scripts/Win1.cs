@@ -8,6 +8,9 @@ public class Win : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        WinLooseScript.WinLevel();
+        if (other.CompareTag("Player"))
+        {
+            WinLooseScript.WinLevel();
+        }
     }
 }

@@ -2,7 +2,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections.Generic;
 using static System.Net.WebRequestMethods;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class FuseBoxPuzzle : MonoBehaviour
 {
@@ -34,6 +36,7 @@ public class FuseBoxPuzzle : MonoBehaviour
     private bool wire3;
     private bool wire4;
     private bool wire5;
+    private bool isCoroutineRunning;
 
     public int life;
 
@@ -45,16 +48,18 @@ public class FuseBoxPuzzle : MonoBehaviour
         wire3 = false;
         wire4 = false;
         wire5 = false;
-        life = 1000000000;
+        isCoroutineRunning = false;
         win.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (wire1 && wire2 && wire3 && wire4 && wire5)
+        if (wire1 && wire2 && wire3 && wire4 && wire5 && !isCoroutineRunning)
         {
             win.SetActive(true);
+            StartCoroutine(GoToMainMenu());
+            isCoroutineRunning = true;
         }
         if(life < 0)
         {
@@ -105,6 +110,13 @@ public class FuseBoxPuzzle : MonoBehaviour
     public void loseLife()
     {
         life--;
-        canvas.GetComponent<TextMeshProUGUI>().text = "Life: " + life;
+        canvas.GetComponent<TextMeshProUGUI>().text = "Life: " + life/2;
+    }
+
+    private IEnumerator GoToMainMenu()
+    {
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene(0);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class WireCollision : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class WireCollision : MonoBehaviour
     public FuseBoxPuzzle FBP;
 
     // Dictionary to store initial positions of wires
-    private Dictionary<GameObject, Vector3> initialPositions = new Dictionary<GameObject, Vector3>();
+    private static Dictionary<GameObject, Vector3> initialPositions = new Dictionary<GameObject, Vector3>();
 
     private void Start()
     {
@@ -19,9 +20,12 @@ public class WireCollision : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(grabCollider.transform.position, transform.position) > 0.5)
+        if(Vector3.Distance(grabCollider.transform.position, transform.position) > 0.1)
         {
-            grabCollider.transform.position = transform.position;
+            transform.position = grabCollider.transform.position;
+            grabCollider.GetComponent<XRGrabInteractable>().enabled = false;
+            grabCollider.transform.position = initialPositions[gameObject];
+            grabCollider.GetComponent<XRGrabInteractable>().enabled = true;
         }
     }
 
@@ -29,38 +33,37 @@ public class WireCollision : MonoBehaviour
     {
         if (other.CompareTag(tag))
         {
-            if (tag == "wire1")
+            if (CompareTag("wire1"))
             {
+                grabCollider.GetComponent<XRGrabInteractable>().enabled = false;
                 FBP.Wire1();
             }
-            else if (tag == "wire2")
+            else if (CompareTag("wire2"))
             {
+                grabCollider.GetComponent<XRGrabInteractable>().enabled = false;
                 FBP.Wire2();
             }
-            else if (tag == "wire3")
+            else if (CompareTag("wire3"))
             {
+                grabCollider.GetComponent<XRGrabInteractable>().enabled = false;
                 FBP.Wire3();
             }
-            else if (tag == "wire4")
+            else if (CompareTag("wire4"))
             {
+                grabCollider.GetComponent<XRGrabInteractable>().enabled = false;
                 FBP.Wire4();
             }
-            else if (tag == "wire5")
+            else if (CompareTag("wire5"))
             {
+                grabCollider.GetComponent<XRGrabInteractable>().enabled = false;
                 FBP.Wire5();
             }
         }
-        else
+        else if(other.CompareTag("wire1") || other.CompareTag("wire2") || other.CompareTag("wire3") || other.CompareTag("wire4") || other.CompareTag("wire5"))
         {
-            // Store the initial position of the other wire if not already stored
-            if (!initialPositions.ContainsKey(other.gameObject))
-            {
-                initialPositions[other.gameObject] = other.transform.position;
-            }
-
             // Call loseLife and reset positions
-            FBP.loseLife();
             ResetWirePositions(other.gameObject);
+            FBP.loseLife();
         }
     }
 
@@ -81,19 +84,19 @@ public class WireCollision : MonoBehaviour
 
     public void Shake()
     {
-        if (tag == "wire1")
+        if (CompareTag("wire1"))
         {
             hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(1.0f, 0.25f, 100f);
         }
-        else if (tag == "wire2")
+        else if (CompareTag("wire2"))
         {
             hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(0.5f, 0.5f, 100f);
         }
-        else if (tag == "wire3")
+        else if (CompareTag("wire3"))
         {
             hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(0.25f, 0.25f, 100f);
         }
-        else if (tag == "wire4")
+        else if (CompareTag("wire4"))
         {
             hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(0.75f, 1.0f, 100f);
         }
