@@ -498,9 +498,9 @@ GameObject:
   m_Component:
   - component: {fileID: 101870711}
   - component: {fileID: 101870712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1002,9 +1002,9 @@ GameObject:
   - component: {fileID: 258555621}
   - component: {fileID: 258555622}
   - component: {fileID: 258555623}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: headCollider
-  m_TagString: Untagged
+  m_TagString: Alien Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1367,7 +1367,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &408556074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,6 +1515,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3184455899561954985, guid: e43b8fea4ee88dc4b80f73e08a8232ca, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184455899561954985, guid: e43b8fea4ee88dc4b80f73e08a8232ca, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184455899561954985, guid: e43b8fea4ee88dc4b80f73e08a8232ca, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184455899561954985, guid: e43b8fea4ee88dc4b80f73e08a8232ca, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184455899561954985, guid: e43b8fea4ee88dc4b80f73e08a8232ca, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5459114080351446253, guid: e43b8fea4ee88dc4b80f73e08a8232ca, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig) Passthrough
@@ -5060,6 +5080,14 @@ PrefabInstance:
       value: Ammo
       objectReference: {fileID: 0}
     - target: {fileID: 5702093507231862328, guid: 3a84841cdd24625489dd70b0e9075506, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702093507231862328, guid: 3a84841cdd24625489dd70b0e9075506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702093507231862328, guid: 3a84841cdd24625489dd70b0e9075506, type: 3}
       propertyPath: m_TagString
       value: Projectile
       objectReference: {fileID: 0}
@@ -5249,6 +5277,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 24b09495c08a50d41966bfb860196e26, type: 3}
       propertyPath: m_Name
       value: RetroGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24b09495c08a50d41966bfb860196e26, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5541,9 +5573,9 @@ GameObject:
   - component: {fileID: 1398384159}
   - component: {fileID: 1398384161}
   - component: {fileID: 1398384160}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: bodyCollider
-  m_TagString: Untagged
+  m_TagString: Alien Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5819,7 +5851,7 @@ MonoBehaviour:
   raycastOrigin: {fileID: 901415997}
   targetLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512
   bullet: {fileID: 408556072}
 --- !u!4 &1448876205 stripped
 Transform:
@@ -7698,11 +7730,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7029948723529949830, guid: 4ce26f5ce61112a42ba99406d11fccd3, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -1018664272722485354, guid: 4ce26f5ce61112a42ba99406d11fccd3, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4ce26f5ce61112a42ba99406d11fccd3, type: 3}
       propertyPath: m_Name
@@ -7710,7 +7742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4ce26f5ce61112a42ba99406d11fccd3, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4ce26f5ce61112a42ba99406d11fccd3, type: 3}
       propertyPath: m_IsActive
@@ -7718,7 +7750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424396828587804706, guid: 4ce26f5ce61112a42ba99406d11fccd3, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

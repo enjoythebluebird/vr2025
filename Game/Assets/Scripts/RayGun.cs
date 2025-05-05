@@ -65,7 +65,21 @@ public class RayGun : MonoBehaviour
 
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, Mathf.Infinity, targetLayers))
         {
-            Debug.Log($"<color=green> Hit Target {hit.transform.name}</color>");
+            if (hit.collider.TryGetComponent<Alien>(out Alien alien))
+            {
+                int damage = 0;
+
+                if (hit.collider.CompareTag("Head"))
+                {
+                    damage = 40;
+                }
+                else if (hit.collider.CompareTag("Body"))
+                {
+                    damage = 50;
+                }
+
+                alien.TakeDamage(damage);
+            }
         }
 
         if (bullet != null)
@@ -80,4 +94,5 @@ public class RayGun : MonoBehaviour
             Destroy(spawnedBullet, 5f);
         }
     }
+
 }
