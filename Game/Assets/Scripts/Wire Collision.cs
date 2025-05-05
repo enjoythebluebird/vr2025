@@ -94,7 +94,7 @@ public class WireCollision : MonoBehaviour
         }
         else if (CompareTag("wire3"))
         {
-            hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(0.25f, 0.25f, 100f);
+            hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(0.25f, 3.0f, 100f);
         }
         else if (CompareTag("wire4"))
         {
@@ -102,7 +102,7 @@ public class WireCollision : MonoBehaviour
         }
         else
         {
-            hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(1.0f, 3.0f, 100f);
+            hand.GetComponent<HapticImpulsePlayer>().SendHapticImpulse(1.0f, 5.0f, 100f);
         }
     }
 }
