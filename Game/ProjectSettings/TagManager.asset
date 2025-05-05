@@ -15,6 +15,9 @@ TagManager:
   - Astronaut
   - Hand
   - Projectile
+  - Alien Head
+  - Alien Body
+  - Alien
   layers:
   - Default
   - TransparentFX
@@ -23,9 +26,9 @@ TagManager:
   - Water
   - UI
   - Body
+  - Alien Head
+  - Alien Body
   - Alien
-  - 
-  - 
   - 
   - 
   - 
