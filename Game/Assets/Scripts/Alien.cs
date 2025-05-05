@@ -16,6 +16,8 @@ public class Alien : MonoBehaviour
     {
         // Alien's total health.
         alien_HP = alien_headHP + alien_bodyHP;
+        // Tell the manager we exist
+        AlienCounter.Instance?.RegisterAlien();
     }
     // Checks the health of the alien, if 0 health left, it is dead and destroyed.
     public void TakeDamage(int amount)
@@ -23,6 +25,7 @@ public class Alien : MonoBehaviour
         alien_HP  -= amount;
         if (alien_HP <= 0)
         {
+            AlienCounter.Instance?.AlienDied();
             Destroy(gameObject);
         }
     }
